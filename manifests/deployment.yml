@@ -1,0 +1,28 @@
+apiVersion : apps/v1
+kind: Deployment
+metadata:
+  name: djangocluster
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: djangocluster
+  template:
+    metadata:
+      labels:
+        app: djangocluster
+    spec:
+      containers:
+        - name: djangocluster
+          image: jlgdjangoregistry.azurecr.io/djangocluster
+          ports:
+          - containerPort: 8000
+          env:
+          - name: DATABASE_HOST
+            value: "server999450653.postgres.database.azure.com"
+          - name: DATABASE_USER
+            value: "entireshrimp5"
+          - name: DATABASE_PASSWORD
+            value: "b884y39M9uVKda6igQIQiQ"
+          - name: DATABASE_NAME
+            value: "flexibleserverdb"
